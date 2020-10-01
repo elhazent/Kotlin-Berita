@@ -15,7 +15,12 @@ class BeritaAdapter (var context: Context,var items: ArrayList<BeritaItem>?)
     : RecyclerView.Adapter<ViewHolder>() {
 
     var API_URL = "http://172.20.30.7/portal_berita-master/"
-
+    const val TITLE_KEY = "JDL"
+    const val DATE_KEY = "TGL"
+    const val AUTHOR_KEY = "PNS"
+    const val FOTO_KEY = "FTO"
+    const val BODY_KEY = "ISI"
+        
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         var view:View = LayoutInflater.from(p0.context).inflate(R.layout.berita_item, p0, false)
         return ViewHolder(view)
@@ -38,11 +43,11 @@ class BeritaAdapter (var context: Context,var items: ArrayList<BeritaItem>?)
             // Mulai activity detail
             val intent = Intent(context, DetailActivity::class.java)
             // Sisipkan data ke intent
-            intent.putExtra("JDL", items!!.get(position).judulBerita)
-            intent.putExtra("TGL", items!!.get(position).tanggalPost)
-            intent.putExtra("PNS", items!!.get(position).penulis)
-            intent.putExtra("FTO", urlImg)
-            intent.putExtra("ISI", items!!.get(position).isiBerita)
+            intent.putExtra(TITLE_KEY, items!!.get(position).judulBerita)
+            intent.putExtra(DATE_KEY, items!!.get(position).tanggalPost)
+            intent.putExtra(AUTHOR_KEY, items!!.get(position).penulis)
+            intent.putExtra(FOTO_KEY, urlImg)
+            intent.putExtra(BODY_KEY, items!!.get(position).isiBerita)
 
             context.startActivity(intent)
         }
